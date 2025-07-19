@@ -1,0 +1,106 @@
+# FastAPI Student Management API - HTTP Tests
+# Use this file to test all endpoints in VS Code or similar IDEs
+
+### Health Check
+GET http://127.0.0.1:8000/health
+Accept: application/json
+
+###
+
+### Root Endpoint
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+###
+
+### Create User - POST
+POST http://127.0.0.1:8000/users/
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "age": 25
+}
+
+###
+
+### Create Another User
+POST http://127.0.0.1:8000/users/
+Content-Type: application/json
+
+{
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "age": 30
+}
+
+###
+
+### Get All Users
+GET http://127.0.0.1:8000/users/
+Accept: application/json
+
+###
+
+### Get User by ID (replace 1 with actual user ID)
+GET http://127.0.0.1:8000/users/1
+Accept: application/json
+
+###
+
+### Update User (replace 1 with actual user ID)
+PUT http://127.0.0.1:8000/users/1
+Content-Type: application/json
+
+{
+    "name": "John Updated",
+    "email": "john.updated@example.com",
+    "age": 26
+}
+
+###
+
+### Delete User (replace 1 with actual user ID)
+DELETE http://127.0.0.1:8000/users/1
+Accept: application/json
+
+###
+
+### Test Error Handling - Get Non-existent User
+GET http://127.0.0.1:8000/users/999
+Accept: application/json
+
+###
+
+### Test Error Demo Endpoint
+GET http://127.0.0.1:8000/error-demo
+Accept: application/json
+
+###
+
+### Test Invalid Data - Create User with Missing Fields
+POST http://127.0.0.1:8000/users/
+Content-Type: application/json
+
+{
+    "name": "Invalid User"
+}
+
+###
+
+### Test Pagination - Get Users with Limit
+GET http://127.0.0.1:8000/users/?skip=0&limit=5
+Accept: application/json
+
+###
+
+### Test API Documentation
+GET http://127.0.0.1:8000/docs
+Accept: text/html
+
+###
+
+### Test Alternative Documentation
+GET http://127.0.0.1:8000/redoc
+Accept: text/html

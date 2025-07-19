@@ -1,0 +1,504 @@
+{
+	"info": {
+		"_postman_id": "fastapi-student-management-api",
+		"name": "FastAPI Student Management API",
+		"description": "A comprehensive Postman collection for the FastAPI Student Management API. This collection covers all REST API endpoints including health checks, user management (CRUD operations), and error handling demonstrations.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health & Status",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Health check endpoint for monitoring application status. Returns application health, timestamp, and version information."
+					},
+					"response": []
+				},
+				{
+					"name": "Root Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "Root endpoint that provides welcome message and links to API documentation."
+					},
+					"response": []
+				},
+				{
+					"name": "API Documentation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/docs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"docs"
+							]
+						},
+						"description": "Swagger UI documentation for the API. Interactive documentation where you can test all endpoints."
+					},
+					"response": []
+				},
+				{
+					"name": "Alternative Documentation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/redoc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"redoc"
+							]
+						},
+						"description": "ReDoc documentation for the API. Alternative documentation format."
+					},
+					"response": []
+				}
+			],
+			"description": "Health monitoring and documentation endpoints"
+		},
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"age\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Create a new user. Requires name, email, and age. Email must be unique."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/?skip=0&limit=100",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "Number of records to skip (pagination)"
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"description": "Maximum number of records to return"
+								}
+							]
+						},
+						"description": "Get all users with pagination support. Use skip and limit parameters for pagination."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Get a specific user by their ID. Replace '1' with the actual user ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jane Doe\",\n    \"email\": \"jane@example.com\",\n    \"age\": 30\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Update an existing user. Replace '1' with the actual user ID. All fields are required."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Delete a user by their ID. Replace '1' with the actual user ID."
+					},
+					"response": []
+				}
+			],
+			"description": "Complete CRUD operations for user management"
+		},
+		{
+			"name": "Error Handling & Testing",
+			"item": [
+				{
+					"name": "Error Demo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/error-demo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"error-demo"
+							]
+						},
+						"description": "Demonstration endpoint that intentionally returns a 500 error for testing error handling."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Non-existent User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/999",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"999"
+							]
+						},
+						"description": "Test 404 error handling by requesting a user that doesn't exist."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User with Invalid Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Invalid User\",\n    \"email\": \"invalid-email\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Test validation error handling by sending invalid data (missing age, invalid email format)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Non-existent User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Non-existent User\",\n    \"email\": \"nonexistent@example.com\",\n    \"age\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/999",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"999"
+							]
+						},
+						"description": "Test 404 error when trying to update a user that doesn't exist."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Non-existent User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/999",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"999"
+							]
+						},
+						"description": "Test 404 error when trying to delete a user that doesn't exist."
+					},
+					"response": []
+				}
+			],
+			"description": "Error handling and testing scenarios"
+		},
+		{
+			"name": "Performance Testing",
+			"item": [
+				{
+					"name": "Health Check with Timing",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Check response time headers for performance monitoring. Look for 'X-Process-Time' header in response."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users with Pagination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/?skip=0&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "Skip first 0 records"
+								},
+								{
+									"key": "limit",
+									"value": "5",
+									"description": "Limit to 5 records"
+								}
+							]
+						},
+						"description": "Test pagination with limited results. Check response time for performance."
+					},
+					"response": []
+				}
+			],
+			"description": "Performance testing and monitoring endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "Base URL for the FastAPI application"
+		}
+	]
+} 
